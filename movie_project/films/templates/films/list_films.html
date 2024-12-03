@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список фильмов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #444;
+        }
+        .film {
+            border: 1px solid #ddd;
+            background: #fff;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        .film img {
+            max-width: 150px;
+            max-height: 200px;
+            margin-right: 15px;
+            border-radius: 5px;
+        }
+        .film h2 {
+            margin: 0;
+            color: #007BFF;
+        }
+        .film p {
+            margin: 5px 0;
+        }
+        .add-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Список фильмов</h1>
+    {% for film in films %}
+    <div class="film">
+        {% if film.image %}
+        <img src="{{ film.image.url }}" alt="{{ film.title }}">
+        {% endif %}
+        <div>
+            <h2>{{ film.title }}</h2>
+            <p><strong>Описание:</strong> {{ film.description }}</p>
+            <p><strong>Отзыв:</strong> {{ film.review }}</p>
+        </div>
+    </div>
+    {% endfor %}
+    <a href="{% url 'add_film' %}" class="add-link">Добавить новый фильм</a>
+</body>
+</html>
